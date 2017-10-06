@@ -29,8 +29,6 @@ def api_call( api_key, api_method, **kwargs ):
     except requests.Timeout:
         raise ApiError( 'Timeout' )
 
-    json = None
-
     if 200 <= response.status_code < 300:
         try:
             json = response.json()
@@ -167,7 +165,7 @@ def parse_cmdline_options( args ):
 
         return result
     except getopt.GetoptError:
-        return ( {}, args )
+        return {}
 
 
 def print_usage_and_exit():
